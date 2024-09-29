@@ -1,0 +1,30 @@
+import java.util.Scanner;
+public class ProfitCalculator {
+    public static int calculateMaxProfit(int[] prices, int n) {
+        int minPrice = Integer.MAX_VALUE;
+        int maxProfit = 0;
+        for (int i = 0; i < n; i++) {
+            if (prices[i] < minPrice) {
+                minPrice = prices[i];
+            }
+            int currentProfit = prices[i] - minPrice;
+            if (currentProfit > maxProfit) {
+                maxProfit = currentProfit;
+            }
+        }
+        return maxProfit;
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter number of days: ");
+        int n = scanner.nextInt();
+        int[] stockPrices = new int[n];
+        System.out.println("Enter stock prices for each day:");
+        for (int i = 0; i < n; i++) {
+            stockPrices[i] = scanner.nextInt();
+        }
+        int result = calculateMaxProfit(stockPrices, n);
+        System.out.println("Maximum profit: " + result);
+    }
+}
